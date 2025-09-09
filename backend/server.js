@@ -12,7 +12,7 @@ const PORT = process.env.PORT;
 // List of allowed frontend URLs
 const allowedOrigins = [
   "http://localhost:5173",               // Local Vite frontend
-  "https://your-frontend-domain.com"    // Replace with your deployed frontend URL
+  "https://codejournal-frontend.onrender.com"    // Replace with your deployed frontend URL
 ];
 
 // Middlewares
