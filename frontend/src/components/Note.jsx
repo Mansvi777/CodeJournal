@@ -20,7 +20,7 @@ const Note = () => {
   }
 
   setLoading(true);
-  fetch(`${BACKEND_URL}auth/problem_note/${id}`, {
+  fetch(`${BACKEND_URL}/auth/problem_note/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
