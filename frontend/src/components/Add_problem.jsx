@@ -11,6 +11,8 @@ const Add_problem = () => {
   const [note, setNote] = useState("");
   const navigate = useNavigate();
 
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -22,7 +24,7 @@ const Add_problem = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/auth/post/problems", {
+      const res = await fetch(`${BACKEND_URL}/auth/post/problems`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

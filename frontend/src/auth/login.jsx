@@ -9,11 +9,13 @@ export default function Login() {
   // State for inputs and loading
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
   
   async function handleSubmit(e) {
   e.preventDefault();
   try {
-    const res = await fetch("http://localhost:5000/auth/login", {  // <-- make sure route matches backend
+    const res = await fetch(`${BACKEND_URL}/auth/login`, {  // <-- make sure route matches backend
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),

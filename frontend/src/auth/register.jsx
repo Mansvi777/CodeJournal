@@ -9,6 +9,8 @@ export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
 
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -17,7 +19,7 @@ export default function Register() {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/auth/register", {
+      const res = await fetch(`${BACKEND_URL}/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password }), // Include name here

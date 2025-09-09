@@ -8,6 +8,8 @@ const Note = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
   // Fetch the note from backend
   useEffect(() => {
   const token = localStorage.getItem("token");
@@ -18,7 +20,7 @@ const Note = () => {
   }
 
   setLoading(true);
-  fetch(`http://localhost:5000/auth/problem_note/${id}`, {
+  fetch(`${BACKEND_URL}auth/problem_note/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -48,7 +50,7 @@ const Note = () => {
 
     try {
       setLoading(true);
-      const res = await fetch(`http://localhost:5000/auth/problem_note/${id}`, {
+      const res = await fetch(`${BACKEND_URL}/auth/problem_note/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

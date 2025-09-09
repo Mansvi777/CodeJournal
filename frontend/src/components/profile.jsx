@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
+
 const Profile = () => {
   const [userName, setUserName] = useState("");
   const [problems, setProblems] = useState([]);
   const navigate = useNavigate();
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+
 
     if (!token) {
       navigate("/login");
@@ -20,7 +23,7 @@ const Profile = () => {
       const userId = decoded.userId;
 
       // Fetch user info
-      fetch(`http://localhost:5000/auth/users/${userId}`)
+      fetch(`${BACKEND_URL}/auth/users/${userId}`)
         .then((res) => res.json())
         .then((data) => {
           if (data) setUserName(data);
@@ -37,7 +40,7 @@ const Profile = () => {
 
       // Fetch all problems
       // Fetch all problems for this user
-      fetch("http://localhost:5000/auth/problems", {
+      fetch(`${BACKEND_URL}/auth/problems`, {
         headers: {
           Authorization: `Bearer ${token}`, // attach token
         },
@@ -62,7 +65,7 @@ const Profile = () => {
    const handleDelete = async (id) => {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://localhost:5000/auth/problems/${id}`, {
+      const res = await fetch(`${BACKEND_URL}/auth/problems/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
